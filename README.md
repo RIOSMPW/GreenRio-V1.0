@@ -508,7 +508,7 @@ Back-end group: Yihai Zhang(ROB,renaming), Peichen Guo(Hazard),  Mingzi Wang(Cac
 
 Validation group: Xinlai Wan, Guangyuan Ma, Yucheng Wang, Shenwei Hu,
 
-SOC: Qiaowenyang
+SoC: Qiaowenyang
 
 Top module:  Zhenxuan Luan, Yifei Zhu
 
