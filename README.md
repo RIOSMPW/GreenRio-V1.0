@@ -1,10 +1,12 @@
+![d944c41020e1aa6319c815a2241af5bd_245348954-9f3d5cb0-e9f8-48c8-b4e6-38c896d54da8](https://github.com/riosmpw/GreenRio1p0/assets/100336131/279f4ed7-e5b3-455d-b261-c1acb313ce27)
+
 # HEHECORE
 
-## Overview
+## 1 Overview
 
 This is a small out-of-order RISC-V core written in synthesizable Verilog that supports the RV64IC unprivileged ISA and parts of the privileged ISA, namely M-mode.
 
-## Feature List
+## 2 Feature List
 
 - It currently supports RISC-V I extension
 - It currently supports M mode
@@ -17,9 +19,9 @@ This is a small out-of-order RISC-V core written in synthesizable Verilog that s
 - It support out-of-order execution
 - nonblocking cache
 
-## Block Diagram
+## 3 Block Diagram
 
-## Pipeline Stages
+## 4 Pipeline Stages
 
 ![architecture.png](./images/2.0.png)
 
@@ -92,9 +94,9 @@ The Reorder Buffer (ROB), tracks the status of each instruction in the pipeline.
 
 - instructions will be commited in order in ROB according to program order, at most 2 instructions can be commited at the same time
 
-# Blcok Description
+## 5 Blcok Description
 
-## Instruction Fetch Unit
+### Instruction Fetch Unit
 
 #### F0: PC generation
 
@@ -215,21 +217,21 @@ instructions first go into the Gshare, and Gshare will give a prediction, and at
   | ins_full        |  O  |   1   |      stall pc in      |    fetch    |
   | rd_en           |  I  |   1   | judge decode is ready |   decode   |
 
-## Instruction Decode Unit
+### Instruction Decode Unit
 
-### Decoder
+#### Decoder
 ![decoder.jpg](./images/decode.jpg)
 
 This decoder supports RV64I instructions. It gets the instr from fetch unit and gives the result to ROB unit. For branch instr, it will output a stall flag, until everything is ready.
 
-### Revision History
+#### Revision History
 
 | Revision Number | Author     | Date       | Description |
 | --------------- | ---------- | ---------- | ----------- |
 | 0.1             | Guohua Yin | 2022.08.16 | init        |
 | 0.2             | Guohua Yin | 2022.08.22 | update      |
 
-### Items
+#### Items
 
 | Item Name | Description                                                 |
 | --------- | ----------------------------------------------------------- |
@@ -289,16 +291,16 @@ This decoder supports RV64I instructions. It gets the instr from fetch unit and 
   | load_store_size_out       |  O  |   2   |                 to rob (lsu)                 |     rob     |
   | load_signed_out           |  O  |   1   |                 to rob (lsu)                 |     rob     |
 
-## RCU
+### RCU
 
-### Revision History
+#### Revision History
 
 | Revision Number | Author      | Date       | Description |
 | --------------- | ----------- | ---------- | ----------- |
 | 0.1             | Yihai Zhang | 2022.08.12 | init        |
 | 2.0             | Yifei Zhu   | 2022.08.24 | init        |
 
-### Items
+#### Items
 
 | Item Name           | Description                                           |
 | ------------------- | ----------------------------------------------------- |
@@ -308,11 +310,11 @@ This decoder supports RV64I instructions. It gets the instr from fetch unit and 
 | reorder buffer      | store the corresponding data of each instruction      |
 | physical register   | -                                                     |
 
-### Overview
+#### Overview
 
 ![rcu2.0.jpg](./images/rcu.jpg)
 
-### rename table
+#### rename table
 
 | Operation | port           | Description                                       |
 | --------- | -------------- | ------------------------------------------------- |
@@ -321,14 +323,14 @@ This decoder supports RV64I instructions. It gets the instr from fetch unit and 
 | flush     | one flush port | roll back to backup when trap comes               |
 | reset     | -              | when reset signal                                 |
 
-### rename table backup
+#### rename table backup
 
 | Operation | port | Description                               |
 | --------- | ---- | ----------------------------------------- |
 | -         | -    | used for rename table rolling back itself |
 | reset     | -    | when reset signal                         |
 
-### physical register file
+#### physical register file
 
 | Operation | port            | Description                                            |
 | --------- | --------------- | ------------------------------------------------------ |
@@ -337,7 +339,7 @@ This decoder supports RV64I instructions. It gets the instr from fetch unit and 
 | flush     | two flush port  | set finish bit to regfile to indicate regfile has used |
 | reset     | -               | when reset signal                                      |
 
-### free list (a fifo)
+#### free list (a fifo)
 
 | Operation | port           | Description                       |
 | --------- | -------------- | --------------------------------- |
@@ -345,7 +347,7 @@ This decoder supports RV64I instructions. It gets the instr from fetch unit and 
 | read      | one read port  | read when rob ready to be written |
 | reset     | -              | when reset signal                 |
 
-### reorder buffer
+#### reorder buffer
 
 | Item Name | Width | Description                                                               |
 | --------- | ----- | ------------------------------------------------------------------------- |
@@ -361,15 +363,15 @@ This decoder supports RV64I instructions. It gets the instr from fetch unit and 
 | rd        | 5 bit | the architecture reg before ranaming                                      |
 | lprd      | 6 bit | the mapped reg which is replaced                                          |
 
-## LSU
+### LSU
 
-### Revision History
+#### Revision History
 
 | Revision Number | Author      | Date       | Description |
 | --------------- | ----------- | ---------- | ----------- |
 | 0.1             | Peichen Guo | 2022.08.10 | init        |
 
-### Items
+#### Items
 
 | Item Name       | Description                            |
 | --------------- | -------------------------------------- |
@@ -377,7 +379,7 @@ This decoder supports RV64I instructions. It gets the instr from fetch unit and 
 | Address Checker | to check address validation            |
 | Control Unit    | to interact with dcache and send stall |
 
-### Overview
+#### Overview
 
 - LSU top diagram
 
@@ -492,11 +494,15 @@ Decode Interface:
 | load_data_valid_o                 | 1     | 1               | output    | load data is valid, backfill the load instruction this time                                                               |
 | load_data_o                       | 1     | XLEN            | output    | load data                                                                                                                 |
 
-# Contribution
+## 6 Organizer
+Zhangxin TAN, Wei CHEN
 
-Guohua Yin,; Xinze Wang,; Yihai Zhang,; Qiaowen Yang,; Zhenxuan Luan,; Peichen Guo,; Minzi Wang,; Guangyuan Ma,; Yucheng Wang,; Shenwei Hu,; Yifei Zhu,
 
-# Verification
+## 7 Contribution Students
+
+Guohua Yin,; Xinze Wang,; Yihai Zhang,; Qiaowen Yang,; Zhenxuan Luan,; Peichen Guo,; Minzi Wang,; Guangyuan Ma,; Yucheng Wang,; Shenwei Hu,; Yifei Zhu
+
+# 8 Verification
 
 Verification suite includes unit test and regression test. We choose open source tool Verilator as simulator. In the module RTL design stage, the verifiers and designers firstly make clear the top-level signals and functions of the module, building an independent verification environment for submodules (such as Cache, Decoder, Gshare, etc.) that need to be verified. We give the module specific inputs and check whether the outputs meet the design expectations of the module functions, so as to accelerate the progress of RTL design.
 
@@ -514,5 +520,19 @@ Validation group: Xinlai Wan, Guangyuan Ma, Yucheng Wang, Shenwei Hu,
 SOC: Qiaowenyang
 
 Top module:  Zhenxuan Luan, Yifei Zhu
+
+## About RIOS Lab
+
+![86831b4376ec6a9615bb54533c442366_245438239-6aae13c6-50a5-40c3-9a4e-ed4c79d41c20](https://github.com/riosmpw/GreenRio1p0/assets/100336131/a5450a30-c64f-4f84-809d-9e7c4d483ae8)
+
+**Ecosystem Wants to be Free**
+
+By David A. Patterson · Director of RIOS Lab
+
+**RISC-V International Open Source Laboratory** (RIOS Lab) is a Shenzhen-based research facility focused on computer system architecture, supported by the Tsinghua-Berkeley Shenzhen Research Institute. As an Open Source and Nobel Prize Laboratory, RIOS Lab promotes open-source innovation and collaboration. Our philosophy is that the computer architecture ecosystem should be free for all to access and build upon.
+
+In November 2019, RIOS Lab was officially unveiled. Under the leadership of 2017 A.M. Turing Award winner Prof. David A. Patterson and operational support from TBSI,  RIOS Lab will conduct cutting-edge research in RISC-V hardware and software technology. Patterson first proposed the Reduced Instruction Set Computer (RISC), an open and free instruction set architecture enabling a new era of processor innovation through open standard collaboration. Released in 2010, the latest Fifth Generation RISC has gained worldwide attention.
+
+The name for the lab RIOS is also inspired by the Spanish word for “rivers.” It symbolizes the flow of information from many sources, coming together to create a whole that is greater than the sum of its parts.
 
 
