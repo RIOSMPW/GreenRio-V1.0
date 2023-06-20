@@ -502,15 +502,6 @@ Zhangxin TAN, Wei CHEN
 
 Guohua Yin,; Xinze Wang,; Yihai Zhang,; Qiaowen Yang,; Zhenxuan Luan,; Peichen Guo,; Minzi Wang,; Guangyuan Ma,; Yucheng Wang,; Shenwei Hu,; Yifei Zhu
 
-# 8 Verification
-
-Verification suite includes unit test and regression test. We choose open source tool Verilator as simulator. In the module RTL design stage, the verifiers and designers firstly make clear the top-level signals and functions of the module, building an independent verification environment for submodules (such as Cache, Decoder, Gshare, etc.) that need to be verified. We give the module specific inputs and check whether the outputs meet the design expectations of the module functions, so as to accelerate the progress of RTL design.
-
-After the preliminary completion of core design, the function of the core should be verified. Since Verilator compiles RTL code into C++ code and then runs the simulation, we use C++ to write a simulating memory and load Elf in it, so that core (including Icache and Dcache) interacts with memory, forming a basic computer system, and verifying the correctness of core functions. Step 1: Run isa-test given by RISC-V international to check whether the operation of a single instruction is correct. After passing isa-test, we decide to use RISC-V torture as stimulation for regression test, and iteratively fix our code during the testing process. The current system can achieve 99.99% accuracy when running 10000 torque test samples.
-
-GreenRio V1.0's Soc is equipped with instruction RAM and data RAM, in addition to the ILA interface. Our Soc verification scheme is to load Elf's instruction segments and data segments into the corresponding RAM, and then reset the core to start running the test program. Check whether the running results are correct through ila.
-## Work Load Division
-
 Front-end group: Xinze Wang(BTB, Fetch), Qiaowen Yang(Gshare), Guohua Yin(Decoder)
 
 Back-end group: Yihai Zhang(ROB,renaming), Peichen Guo(Hazard),  Mingzi Wang(Cache),
@@ -520,6 +511,15 @@ Validation group: Xinlai Wan, Guangyuan Ma, Yucheng Wang, Shenwei Hu,
 SOC: Qiaowenyang
 
 Top module:  Zhenxuan Luan, Yifei Zhu
+
+## 8 Verification
+
+Verification suite includes unit test and regression test. We choose open source tool Verilator as simulator. In the module RTL design stage, the verifiers and designers firstly make clear the top-level signals and functions of the module, building an independent verification environment for submodules (such as Cache, Decoder, Gshare, etc.) that need to be verified. We give the module specific inputs and check whether the outputs meet the design expectations of the module functions, so as to accelerate the progress of RTL design.
+
+After the preliminary completion of core design, the function of the core should be verified. Since Verilator compiles RTL code into C++ code and then runs the simulation, we use C++ to write a simulating memory and load Elf in it, so that core (including Icache and Dcache) interacts with memory, forming a basic computer system, and verifying the correctness of core functions. Step 1: Run isa-test given by RISC-V international to check whether the operation of a single instruction is correct. After passing isa-test, we decide to use RISC-V torture as stimulation for regression test, and iteratively fix our code during the testing process. The current system can achieve 99.99% accuracy when running 10000 torque test samples.
+
+GreenRio V1.0's Soc is equipped with instruction RAM and data RAM, in addition to the ILA interface. Our Soc verification scheme is to load Elf's instruction segments and data segments into the corresponding RAM, and then reset the core to start running the test program. Check whether the running results are correct through ila.
+
 
 ## About RIOS Lab
 
