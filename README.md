@@ -1,6 +1,6 @@
 ![d944c41020e1aa6319c815a2241af5bd_245348954-9f3d5cb0-e9f8-48c8-b4e6-38c896d54da8](https://github.com/riosmpw/GreenRio1p0/assets/100336131/279f4ed7-e5b3-455d-b261-c1acb313ce27)
 
-# HEHECORE
+# GreenRio V1.0
 
 ## 1 Overview
 
@@ -508,7 +508,7 @@ Verification suite includes unit test and regression test. We choose open source
 
 After the preliminary completion of core design, the function of the core should be verified. Since Verilator compiles RTL code into C++ code and then runs the simulation, we use C++ to write a simulating memory and load Elf in it, so that core (including Icache and Dcache) interacts with memory, forming a basic computer system, and verifying the correctness of core functions. Step 1: Run isa-test given by RISC-V international to check whether the operation of a single instruction is correct. After passing isa-test, we decide to use RISC-V torture as stimulation for regression test, and iteratively fix our code during the testing process. The current system can achieve 99.99% accuracy when running 10000 torque test samples.
 
-HeHe's Soc is equipped with instruction RAM and data RAM, in addition to the ILA interface. Our Soc verification scheme is to load Elf's instruction segments and data segments into the corresponding RAM, and then reset the core to start running the test program. Check whether the running results are correct through ila.
+GreenRio V1.0's Soc is equipped with instruction RAM and data RAM, in addition to the ILA interface. Our Soc verification scheme is to load Elf's instruction segments and data segments into the corresponding RAM, and then reset the core to start running the test program. Check whether the running results are correct through ila.
 ## Work Load Division
 
 Front-end group: Xinze Wang(BTB, Fetch), Qiaowen Yang(Gshare), Guohua Yin(Decoder)
