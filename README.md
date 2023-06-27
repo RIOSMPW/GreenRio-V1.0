@@ -6,6 +6,9 @@
 
 This is a small out-of-order RISC-V core written in synthesizable Verilog that supports the RV64IC unprivileged ISA and parts of the privileged ISA, namely M-mode.
 
+![greenrio](https://github.com/riosmpw/GreenRio-V1.0/assets/100336131/2ba2b6c3-fff9-414e-940f-858ca55014b2)
+
+
 ## 2 Feature List
 
 - It currently supports RISC-V I extension
